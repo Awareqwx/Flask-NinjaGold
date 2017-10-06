@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninja Gold</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <h4>Your Gold: {{gold}}</h4>
+        <div class="goldbox">
+            <h3>Farm</h3>
+            <p>(Earns 10-20 gold)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="goldmin" value="10">
+                <input type="hidden" name="goldmax" value="20">
+                <input type="hidden" name="name" value="Farm">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class="goldbox">
+            <h3>Cave</h3>
+            <p>(Earns 5-10 gold)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="goldmin" value="5">
+                <input type="hidden" name="goldmax" value="10">
+                <input type="hidden" name="name" value="Cave">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class="goldbox">
+            <h3>House</h3>
+            <p>(Earns 2-5 gold)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="goldmin" value="2">
+                <input type="hidden" name="goldmax" value="10">
+                <input type="hidden" name="name" value="House">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class="goldbox">
+            <h3>Casino</h3>
+            <p>(Earns/takes 0-50 gold)</p>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="goldmin" value="-50">
+                <input type="hidden" name="goldmax" value="50">
+                <input type="hidden" name="name" value="Casino">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <p>Activities:</p>
+        <div id="activities">
+            {% for x in acts %} 
+            <p class="act">{{ x }}</p>
+            {% endfor %}
+        </div>
+        <script>
+            var element = document.getElementById("activities");
+            element.scrollTop = element.scrollHeight;
+        </script>
+    </body>
+</html>
